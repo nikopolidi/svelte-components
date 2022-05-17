@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Svelte app</title>
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/global.css" />
+    <!-- MATERIAL FONTS AND STYLES -->
+    <!-- <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    /> -->
+    <!--  END MATERIAL FONTS AND STYLES-->
+    <script defer src="/build/bundle.js"></script>
+    <script>
+      /* import {MDCSelect} from '@material/select';
+
+      const select = new MDCSelect(document.querySelector('.mdc-select'));
+
+      select.listen('MDCSelect:change', () => {
+        alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
+      }); */
+      
+      function onBodyLoaded() {
+        console.log('bodyLoaded')
+        // console.log('document', document)
+        // mdc.select.MDCSelect.attachTo(document.querySelector('.mdc-select'))
+      }
+      function openDialog(target) {
+        // const dialog = dialog
+        const id = target.getAttribute("data-target");
+        console.log("id", id);
+
+        const dialog = document.getElementById(id);
+        dialog.setAttribute("open", "true");
+      }
+    </script>
+  </head>
+
+  <body onload="onBodyLoaded();">
+    <!-- FORM -->
+    <h1>Form</h1>
+    <element-factory-md-form-control></element-factory-md-form-control>
+   
+    <!-- DIALOG -->
+    <h1>Dialog popup</h1>
+    <div class="button-container">
+      <button
+        type="button"
+        class="mdc-button mdc-button--raised"
+        onclick="openDialog(this)"
+        data-target="dialog-fullscreen"
+      >
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label"> Open FullScreen Dialog</span>
+      </button>
+
+      <button
+        type="button"
+        class="mdc-button mdc-button--raised"
+        onclick="openDialog(this)"
+        data-target="dialog-alert"
+      >
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label"> Open Alert Dialog Dismissible</span>
+      </button>
+    </div>
+    <element-factory-md-dialog
+      id="dialog-fullscreen"
+      title="Full Screen Dialog title"
+      fullscreen="true"
+      buttonoklabel="OK"
+      buttonokvariant="raised"
+      buttoncancellabel="Cancel"
+      buttoncancelvariant=""
+    >
+      <p>FullScreen dialog content</p>
+    </element-factory-md-dialog>
+    <element-factory-md-dialog
+      id="dialog-alert"
+      title="Alert? Alert!"
+      dismissible
+      buttonoklabel="OK"
+      buttoncancellabel="Cancel"
+    >
+    </element-factory-md-dialog>
+    <!-- MAP -->
+    <h1>Google Map</h1>
+    <div style="width: 100%;height: 300px">
+      <element-factory-google-map></element-factory-google-map>
+    </div>
+    <!-- VIDEO -->
+    <h1>Video</h1>
+    <element-factory-md-video></element-factory-md-video>
+    
+
+    <!-- TABS -->
+    <h1>Tabs</h1>
+    <div height="300">
+      <element-factory-md-tabs/>
+    </div>
+    
+  </body>
+</html>
